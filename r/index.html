@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Redirecting…</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #1a1a1a;
+      background: #f5f5f5;
+    }
+
+    main {
+      max-width: 22rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .status {
+      margin: 0;
+    }
+
+    .status--loading {
+      color: #555;
+    }
+
+    .status--error {
+      color: #9b1c1c;
+    }
+
+    .status code {
+      font-size: 0.875em;
+      padding: 0.125rem 0.375rem;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p id="status" class="status status--loading" role="status">Redirecting…</p>
+  </main>
+  <script>
+    (async function () {
+      const statusEl = document.getElementById("status");
+      const CONFIG_URL = "redirects.json";
+      const ID_PATTERN = /^[a-z0-9](?:[a-z0-9_-]{0,62})?$/i;
+
+      function showError(message) {
+        statusEl.className = "status status--error";
+        statusEl.textContent = message;
+      }
+
+      function showLoading(message) {
+        statusEl.className = "status status--loading";
+        statusEl.textContent = message;
+      }
+
+      function getQueryId() {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const raw = params.get("id");
+          if (raw === null || raw === "") {
+            return { ok: false, reason: "missing" };
+          }
+          const id = String(raw).trim();
+          if (!id || !ID_PATTERN.test(id)) {
+            return { ok: false, reason: "invalid" };
+          }
+          return { ok: true, id };
+        } catch {
+          return { ok: false, reason: "invalid" };
+        }
+      }
+
+      function isSafeRedirectUrl(url) {
+        try {
+          const parsed = new URL(url, window.location.href);
+          return parsed.protocol === "http:" || parsed.protocol === "https:";
+        } catch {
+          return false;
+        }
+      }
+
+      async function loadRedirects() {
+        const response = await fetch(CONFIG_URL, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("config HTTP " + response.status);
+        }
+        const data = await response.json();
+        if (data === null || typeof data !== "object" || Array.isArray(data)) {
+          throw new Error("config must be a JSON object");
+        }
+        return data;
+      }
+
+      try {
+        const idResult = getQueryId();
+
+        if (!idResult.ok) {
+          if (idResult.reason === "missing") {
+            showError("Missing link id. Use a URL like /r/?id=resume");
+          } else {
+            showError("Invalid link id. Use letters, numbers, hyphens, and underscores only.");
+          }
+          return;
+        }
+
+        const { id } = idResult;
+        showLoading("Redirecting…");
+
+        let redirects;
+        try {
+          redirects = await loadRedirects();
+        } catch {
+          showError("Could not load redirect list. Try again later.");
+          return;
+        }
+
+        const destination = redirects[id];
+        if (typeof destination !== "string" || !destination.trim()) {
+          showError("Unknown link: " + id);
+          return;
+        }
+
+        const url = destination.trim();
+        if (!isSafeRedirectUrl(url)) {
+          showError("This link is not configured correctly.");
+          return;
+        }
+
+        window.location.replace(url);
+      } catch {
+        showError("Something went wrong. Please try again.");
+      }
+    })();
+  </script>
+</body>
+</html>
