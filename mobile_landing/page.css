@@ -1,0 +1,31 @@
+.subpage {
+  max-width: 22rem;
+  margin: 0 auto;
+  padding: max(env(safe-area-inset-top), 1.5rem) 1.25rem 2rem;
+  min-height: 100dvh;
+}
+
+.subpage__back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.9375rem;
+  color: #8b98a5;
+  text-decoration: none;
+}
+
+.subpage__back:hover,
+.subpage__back:active {
+  color: #1d9bf0;
+}
+
+.subpage h1 {
+  margin: 0 0 1rem;
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.subpage__placeholder {
+  margin: 0;
+  color: #8b98a5;
+  font-size: 0.9375rem;
+}
