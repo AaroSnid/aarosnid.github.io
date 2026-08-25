@@ -1,0 +1,10 @@
+{
+  "title": "Digital Etch-A-Sketch",
+  "tagline": "A portable, battery-powered drawing toy built around STM32 and rotary encoders.",
+  "status": "Completed",
+  "version": "Revision 1 (V2)",
+  "description": "The Digital Etch-A-Sketch is a portable recreation of the classic drawing toy. It uses an STM32 microcontroller, a 3.5-inch TFT display, and rotary encoders so the user can draw, erase, and adjust settings from a handheld device. The project emphasizes tactile controls, low-power operation, and a compact embedded firmware architecture.",
+  "mainImage": "assets/images/main.png",
+  "github": "https://github.com/aarosnid/Digital-Etch-A-Sketch",
+  "slug": "digital-etch-a-sketch"
+}
