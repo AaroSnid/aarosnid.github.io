@@ -1,5 +1,6 @@
 {
   "projects": [
-    { "slug": "digital-etch-a-sketch" }
+    { "slug": "digital-etch-a-sketch" },
+    { "slug": "connect-4-business-card" }
   ]
 }

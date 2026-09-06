@@ -1,0 +1,10 @@
+{
+  "title": "Connect 4 Business Card",
+  "tagline": "A business card sized game of Connect 4 versus an AI opponent, powered by a coin cell battery.",
+  "status": "Completed",
+  "version": "Version 1",
+  "description": "An embedded systems based version of the classical business card: a business card sized interactive Connect-4 project powered only using a coin cell battery.",
+  "mainImage": "assets/images/card_front.jpeg",
+  "github": "https://github.com/AaroSnid/connect4-business-card",
+  "slug": "connect-4-business-card"
+}
