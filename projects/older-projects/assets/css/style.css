@@ -1,0 +1,18 @@
+.project-page--text-only .project-page__content {
+  padding-top: 1rem;
+}
+
+.older-projects-list {
+  max-width: 52rem;
+  padding-left: 1.25rem;
+}
+
+.older-projects-list li {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+
+.older-projects-list a {
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
