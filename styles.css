@@ -91,6 +91,22 @@ h1 {
   margin-bottom: 0;
 }
 
+.projects-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.projects-link:hover,
+.projects-link:focus-visible {
+  color: var(--accent);
+}
+
 .content-section {
   display: grid;
   grid-template-columns: minmax(10rem, 0.75fr) minmax(0, 2fr);
