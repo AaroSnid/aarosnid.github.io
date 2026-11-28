@@ -4,25 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Digital Etch-A-Sketch</title>
-    <link rel="stylesheet" href="../assets/css/theme.css" />
+    <meta name="theme-color" content="#0f1113" />
+    <link rel="stylesheet" href="../../assets/css/theme.css" />
     <link rel="stylesheet" href="../assets/css/project-page.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <noscript><style>body.booting > .wrap { visibility: visible; animation: none; }</style></noscript>
   </head>
-  <body>
+  <body class="booting" data-navpath="~/portfolio/projects" data-navcmd="cd ~/portfolio/projects/digital-etch-a-sketch &amp;&amp; cat README.md">
+    <div class="wrap">
+    <header class="term">
+      <span class="host"><b>aaron</b>@portfolio:<span class="muted">~/portfolio/projects/digital-etch-a-sketch</span>$</span>
+      <nav class="primary" aria-label="Primary">
+        <a href="../../index.html">home</a>
+        <a href="../index.html">projects</a>
+        <a href="index.html" aria-current="page">digital-etch-a-sketch</a>
+      </nav>
+    </header>
+
     <main class="project-page">
-      <header class="project-page__header">
-        <a class="back-link" href="../index.html">← Back to projects</a>
-        <p class="eyebrow" id="project-eyebrow">Embedded prototype</p>
-        <h1 id="project-title">Digital Etch-A-Sketch</h1>
-        <div class="project-page__meta">
-          <span class="status-badge" id="project-status">Complete</span>
-          <span class="version-pill" id="project-version"></span>
-        </div>
-      </header>
-
-      <img class="project-page__hero" id="project-hero" src="assets/images/main.png" alt="Digital Etch-A-Sketch board and display" />
-
       <article class="project-page__content">
+        <h1 id="project-title">Digital Etch-A-Sketch</h1>
+        <p class="meta"><span id="project-eyebrow">Embedded prototype</span><span id="project-status">Complete</span><span id="project-version"></span></p>
+
+        <img class="project-page__hero" id="project-hero" src="assets/images/main.png" alt="Digital Etch-A-Sketch board and display" />
+
         <p>During a previous Co-op term, the company ran a small design challenge for the interns to design an electronic Etch-A-Sketch, and I decided to use this opportunity to learn PCB design. This project taught me PCB design the hard way, including an initial version which melted its own solder joints.</p>
 
         <p>The Etch-A-Sketch traditionally uses a simple interface of two knobs and a “cursor” which scrapes powder off the back side of the screen to draw, and a shaking gesture to “erase” your drawing by reapplying the powder. My adaptation aims to recreate the basic elements, while taking advantage of the capabilities enabled by a digital version. This means implementation of the simple cursor controls and motion enabled erase, with some additional quality of life features.</p>
@@ -76,10 +81,13 @@
         <p>Despite the unfortunate failure of the initial hardware version, it was likely doomed from the start. It did not have the proper connections to the boot configuration pins, which likely would have prevented normal operation. Other factors such as the unnecessary power boot circuit, the inverse polarity connection, and the unmatched SPI traces are oversights which in hindsight seem obvious with little precursory research, but at the time had not been obvious mistakes. These were resolved with the first revision, but hopefully similar mistakes will not be made in future projects, where I can draw on the knowledge gained here, and the research phase of hardware development to be more comprehensive.</p>
 
         <p>Overall, this project served as a great introduction to PCB design. I'm particularly proud of the hardware design, since this was my first time designing a PCB from scratch, and the current board fully meets the original design specs. It's also become something fun to show off: family members who remember the original toy get a kick out of seeing this digital version in action.</p>
+        <p class="muted prompt-end" aria-hidden="true">$ <span class="cursor"></span></p>
       </article>
     </main>
 
     <a class="sticky-repo-link" id="project-github-link" href="https://github.com/aarosnid/Digital-Etch-A-Sketch" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+    </div>
     <script src="../assets/js/render-project.js"></script>
+    <script src="../../assets/js/boot.js"></script>
   </body>
 </html>

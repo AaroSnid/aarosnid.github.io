@@ -1,7 +1,7 @@
 (function () {
-  const grid = document.getElementById('projects-grid');
+  const listing = document.getElementById('projects-grid');
 
-  if (!grid) return;
+  if (!listing) return;
 
   async function loadManifest() {
     try {
@@ -29,53 +29,39 @@
           merged[key] = data[key];
         }
       });
-
-      if (!merged.title) merged.title = slug;
-      if (!merged.tagline) merged.tagline = 'Project details coming soon.';
-      if (!merged.mainImage) merged.mainImage = 'assets/images/placeholder.svg';
-      if (!merged.github) merged.github = '#';
-      return merged;
     } catch (error) {
       console.warn(`Project metadata unavailable for ${slug}.`, error);
-      return merged;
     }
+
+    if (!merged.title) merged.title = slug;
+    if (!merged.tagline) merged.tagline = 'Project details coming soon.';
+    return merged;
   }
 
+  function span(className, text) {
+    const el = document.createElement('span');
+    el.className = className;
+    el.textContent = text;
+    return el;
+  }
+
+  // One terminal-style listing row: slug, status tag, tagline.
   function renderProject(project) {
-    const card = document.createElement('a');
-    card.className = 'project-card';
-    card.href = `./${project.slug}/index.html`;
-    card.setAttribute('aria-label', `Open ${project.title}`);
+    const entry = document.createElement('a');
+    entry.className = 'entry';
+    entry.href = `./${project.slug}/index.html`;
+    entry.setAttribute('aria-label', `Open ${project.title}`);
 
-    const image = document.createElement('img');
-    image.className = 'project-card__image';
-    image.alt = project.title;
-    const imageSrc = project.mainImage && project.mainImage.startsWith('http')
-      ? project.mainImage
-      : `./${project.slug}/${project.mainImage}`;
+    entry.appendChild(span('name', project.slug));
 
-    image.src = imageSrc;
-    image.onerror = () => {
-      image.classList.add('project-card__image--placeholder');
-      image.replaceWith(createPlaceholder(project.title));
-    };
+    const tag = [project.status, project.version].filter(Boolean).join(' · ').toLowerCase();
+    if (tag) {
+      entry.appendChild(document.createTextNode(' '));
+      entry.appendChild(span('tag', tag));
+    }
 
-    const body = document.createElement('div');
-    body.className = 'project-card__body';
-    body.innerHTML = `
-      <h2 class="project-card__title">${project.title}</h2>
-      <p class="project-card__tagline">${project.tagline}</p>
-    `;
-
-    card.append(image, body);
-    grid.appendChild(card);
-  }
-
-  function createPlaceholder(label) {
-    const placeholder = document.createElement('div');
-    placeholder.className = 'project-card__image project-card__image--placeholder';
-    placeholder.textContent = label;
-    return placeholder;
+    entry.appendChild(span('desc', project.tagline));
+    listing.appendChild(entry);
   }
 
   async function init() {
@@ -83,7 +69,7 @@
     const projects = manifest.projects || [];
 
     if (!projects.length) {
-      grid.innerHTML = '<div class="empty-state">No projects are currently listed.</div>';
+      listing.innerHTML = '<div class="empty-state">No projects are currently listed.</div>';
       return;
     }
 

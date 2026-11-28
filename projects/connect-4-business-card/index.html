@@ -4,25 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Connect 4 Business Card</title>
-    <link rel="stylesheet" href="../assets/css/theme.css" />
+    <meta name="theme-color" content="#0f1113" />
+    <link rel="stylesheet" href="../../assets/css/theme.css" />
     <link rel="stylesheet" href="../assets/css/project-page.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <noscript><style>body.booting > .wrap { visibility: visible; animation: none; }</style></noscript>
   </head>
-  <body>
+  <body class="booting" data-navpath="~/portfolio/projects" data-navcmd="cd ~/portfolio/projects/connect-4-business-card &amp;&amp; cat README.md">
+    <div class="wrap">
+    <header class="term">
+      <span class="host"><b>aaron</b>@portfolio:<span class="muted">~/portfolio/projects/connect-4-business-card</span>$</span>
+      <nav class="primary" aria-label="Primary">
+        <a href="../../index.html">home</a>
+        <a href="../index.html">projects</a>
+        <a href="index.html" aria-current="page">connect-4-business-card</a>
+      </nav>
+    </header>
+
     <main class="project-page">
-      <header class="project-page__header">
-        <a class="back-link" href="../index.html">← Back to projects</a>
-        <p class="eyebrow" id="project-eyebrow">Embedded project</p>
-        <h1 id="project-title">Connect 4 Business Card</h1>
-        <div class="project-page__meta">
-          <span class="status-badge" id="project-status">Complete</span>
-          <span class="version-pill" id="project-version"></span>
-        </div>
-      </header>
-
-      <img class="project-page__hero" id="project-hero" src="assets/images/card_front.jpeg" alt="Front of the Connect 4 business card" />
-
       <article class="project-page__content">
+        <h1 id="project-title">Connect 4 Business Card</h1>
+        <p class="meta"><span id="project-eyebrow">Embedded project</span><span id="project-status">Complete</span><span id="project-version"></span></p>
+
+        <img class="project-page__hero" id="project-hero" src="assets/images/card_front.jpeg" alt="Front of the Connect 4 business card" />
+
         <p>Around 4 months ago, I found myself looking into networking events in order to connect with people in the embedded systems field. At the same time, I was being asked about my project portfolio during applications and interviews. I thought to address these, I could have a project which would serve both as a networking tool, and a convenient link to a project portfolio. I decided that an embedded systems based version of the classical business card would be a good way to present these, and set out to create a business card sized interactive project powered only using a coin cell battery.</p>
 
         <figure class="project-figure">
@@ -99,10 +104,13 @@
         <p>Many of the details I considered during the design process had little impact on the final system design. One example of this is the consideration given to the GPIO inputs default resistor configuration, where pull-downs were chosen to reduce the amount of leakage current. Another example of this is many of the connect 4 board functions, which use precomputed magic numbers and unwrapped algorithms in an attempt to optimise their implementation on the project’s MCU. These either have little impact, or in the case of the algorithms could be better optimized by the compiler. Rather than focusing on these optimisations, priority should have been given to getting a working prototype where required optimisations would be apparent.</p>
 
         <p>Overall, this project has been a good way to learn about low-level hardware control and algorithm implementation under real world constraints. Working around the power budget, board size, and cost all guided the project during development. I haven’t yet had the opportunity to hand these out, but that’s the next step once the next hardware version is ready. If you want one, don’t be afraid to reach out!</p>
+        <p class="muted prompt-end" aria-hidden="true">$ <span class="cursor"></span></p>
       </article>
     </main>
 
     <a class="sticky-repo-link" id="project-github-link" href="https://github.com/AaroSnid/connect4-business-card" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+    </div>
     <script src="../assets/js/render-project.js"></script>
+    <script src="../../assets/js/boot.js"></script>
   </body>
 </html>

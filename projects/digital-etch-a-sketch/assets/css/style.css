@@ -1,8 +1,2 @@
-body {
-  background: var(--bg);
-}
-
-.project-page__content h2 {
-  margin: 0.5rem 0 0.25rem;
-  font-size: 1.2rem;
-}
+/* Digital Etch-A-Sketch: page-specific overrides (none needed; the shared
+   theme and project-page.css cover this page). */

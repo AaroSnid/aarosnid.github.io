@@ -1,6 +1,5 @@
 (function () {
   const titleEl = document.getElementById('project-title');
-  const eyebrowEl = document.getElementById('project-eyebrow');
   const statusEl = document.getElementById('project-status');
   const versionEl = document.getElementById('project-version');
   const heroEl = document.getElementById('project-hero');
@@ -14,7 +13,8 @@
       const project = await response.json();
 
       if (titleEl && project.title) titleEl.textContent = project.title;
-      if (eyebrowEl && project.status) eyebrowEl.textContent = project.status;
+      // #project-eyebrow (category, e.g. "Embedded project") stays as authored
+      // in the HTML; status and version come from project.json.
       if (statusEl && project.status) statusEl.textContent = project.status;
       if (versionEl && project.version) versionEl.textContent = project.version;
       if (descriptionEl && project.description) descriptionEl.textContent = project.description;
@@ -22,7 +22,7 @@
       if (heroEl && project.mainImage) {
         const imagePath = project.mainImage.startsWith('http') ? project.mainImage : `./${project.mainImage}`;
         heroEl.src = imagePath;
-        heroEl.alt = project.title || 'Project hero image';
+        if (!heroEl.alt) heroEl.alt = project.title || 'Project hero image';
       }
       if (project.title) {
         document.title = project.title;

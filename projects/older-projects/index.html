@@ -4,18 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Older Projects</title>
-    <link rel="stylesheet" href="../assets/css/theme.css" />
+    <meta name="theme-color" content="#0f1113" />
+    <link rel="stylesheet" href="../../assets/css/theme.css" />
     <link rel="stylesheet" href="../assets/css/project-page.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <noscript><style>body.booting > .wrap { visibility: visible; animation: none; }</style></noscript>
   </head>
-  <body>
-    <main class="project-page project-page--text-only">
-      <header class="project-page__header">
-        <a class="back-link" href="../index.html">← Back to projects</a>
-        <h1 id="project-title">Older Projects</h1>
-      </header>
+  <body class="booting" data-navpath="~/portfolio/projects" data-navcmd="cd ~/portfolio/projects/older-projects &amp;&amp; cat README.md">
+    <div class="wrap">
+    <header class="term">
+      <span class="host"><b>aaron</b>@portfolio:<span class="muted">~/portfolio/projects/older-projects</span>$</span>
+      <nav class="primary" aria-label="Primary">
+        <a href="../../index.html">home</a>
+        <a href="../index.html">projects</a>
+        <a href="index.html" aria-current="page">older-projects</a>
+      </nav>
+    </header>
 
+    <main class="project-page project-page--text-only">
       <article class="project-page__content">
+        <h1 id="project-title">Older Projects</h1>
+
         <p>I have not yet had the chance to make pages for some of my older projects. They are all accessible on my Github.</p>
 
         <p>Some of note:</p>
@@ -26,10 +35,13 @@
           <li>Some select VHDL projects, including a FSM controlled traffic light controller with integrated pedestrian crossing requests. <a href="https://github.com/AaroSnid/FPGA-Traffic-Light-Controller" target="_blank" rel="noopener noreferrer">https://github.com/AaroSnid/FPGA-Traffic-Light-Controller</a></li>
           <li>An STM32 based alarm clock which, prior to an alarm going off, will activate an array of blue LEDs which can help the user wake more gracefully. <a href="https://github.com/AaroSnid/Alarm-Clock-with-Sunrise" target="_blank" rel="noopener noreferrer">https://github.com/AaroSnid/Alarm-Clock-with-Sunrise</a></li>
         </ul>
+        <p class="muted prompt-end" aria-hidden="true">$ <span class="cursor"></span></p>
       </article>
     </main>
 
     <a class="sticky-repo-link" id="project-github-link" href="https://github.com/AaroSnid" target="_blank" rel="noopener noreferrer">View my GitHub profile →</a>
+    </div>
     <script src="../assets/js/render-project.js"></script>
+    <script src="../../assets/js/boot.js"></script>
   </body>
 </html>
